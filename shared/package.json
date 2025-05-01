@@ -1,0 +1,14 @@
+{
+  "name": "muvo-shared",
+  "version": "1.0.0",
+  "description": "Shared code for MUVO app",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
