@@ -12,33 +12,33 @@ const Footer: React.FC = () => {
               Aplicación oficial de MUVO CBD para e-commerce y marketing en red.
             </p>
           </div>
-          
+
           <div>
             <h3 className="text-xl font-bold mb-4">Enlaces</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/">
-                  <a className="text-green-200 hover:text-white transition duration-300">Inicio</a>
+                <Link href="/" className="text-green-200 hover:text-white transition duration-300">
+                  Inicio
                 </Link>
               </li>
               <li>
-                <Link href="/articles">
-                  <a className="text-green-200 hover:text-white transition duration-300">Aprender</a>
+                <Link href="/articles" className="text-green-200 hover:text-white transition duration-300">
+                  Aprender
                 </Link>
               </li>
               <li>
-                <Link href="/muver/shop">
-                  <a className="text-green-200 hover:text-white transition duration-300">Tienda</a>
+                <Link href="/muver/shop" className="text-green-200 hover:text-white transition duration-300">
+                  Tienda
                 </Link>
               </li>
               <li>
-                <Link href="/login">
-                  <a className="text-green-200 hover:text-white transition duration-300">Iniciar Sesión</a>
+                <Link href="/login" className="text-green-200 hover:text-white transition duration-300">
+                  Iniciar Sesión
                 </Link>
               </li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-xl font-bold mb-4">Contacto</h3>
             <p className="text-green-200 mb-2">MUVO CBD</p>
@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
             </p>
           </div>
         </div>
-        
+
         <div className="border-t border-green-700 mt-8 pt-8 text-center">
           <p className="text-green-200">
             &copy; {new Date().getFullYear()} MUVO CBD. Todos los derechos reservados.

@@ -41,30 +41,28 @@ const Header: React.FC<HeaderProps> = ({ title, onBack }) => {
                 </svg>
               </button>
             )}
-            <Link href="/">
-              <a className="text-2xl font-bold text-white hover:text-indigo-200 transition duration-300">
-                {title || 'Muvo'}
-              </a>
+            <Link href="/" className="text-2xl font-bold text-white hover:text-indigo-200 transition duration-300">
+              {title || 'Muvo'}
             </Link>
           </div>
 
           <nav>
             <ul className="flex space-x-6">
               <li>
-                <Link href="/articles">
-                  <a className="text-white hover:text-indigo-200 transition duration-300">Aprender</a>
+                <Link href="/articles" className="text-white hover:text-indigo-200 transition duration-300">
+                  Aprender
                 </Link>
               </li>
               <li>
-                <Link href="/muver/shop">
-                  <a className="text-white hover:text-indigo-200 transition duration-300">Tienda</a>
+                <Link href="/muver/shop" className="text-white hover:text-indigo-200 transition duration-300">
+                  Tienda
                 </Link>
               </li>
               {user ? (
                 <>
                   <li>
-                    <Link href="/muver/dashboard">
-                      <a className="text-white hover:text-indigo-200 transition duration-300">Tablero</a>
+                    <Link href="/muver/dashboard" className="text-white hover:text-indigo-200 transition duration-300">
+                      Tablero
                     </Link>
                   </li>
                   <li>
@@ -78,8 +76,8 @@ const Header: React.FC<HeaderProps> = ({ title, onBack }) => {
                 </>
               ) : (
                 <li>
-                  <Link href="/auth/login">
-                    <a className="text-white hover:text-indigo-200 transition duration-300">Iniciar Sesión</a>
+                  <Link href="/auth/login" className="text-white hover:text-indigo-200 transition duration-300">
+                    Iniciar Sesión
                   </Link>
                 </li>
               )}

@@ -28,22 +28,16 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
             {user ? (
-              <Link href="/muver/dashboard">
-                <a className="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-                  Ir al Tablero
-                </a>
+              <Link href="/muver/dashboard" className="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                Ir al Tablero
               </Link>
             ) : (
               <>
-                <Link href="/login">
-                  <a className="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-                    Iniciar Sesión
-                  </a>
+                <Link href="/login" className="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                  Iniciar Sesión
                 </Link>
-                <Link href="/register">
-                  <a className="bg-white hover:bg-gray-100 text-green-700 font-bold py-3 px-6 rounded-lg border border-green-700 transition duration-300">
-                    Registrarse
-                  </a>
+                <Link href="/register" className="bg-white hover:bg-gray-100 text-green-700 font-bold py-3 px-6 rounded-lg border border-green-700 transition duration-300">
+                  Registrarse
                 </Link>
               </>
             )}
@@ -55,8 +49,8 @@ export default function Home() {
               <p className="text-gray-600 mb-4">
                 Gestiona tus actividades de marketing en red, recluta nuevos miembros y organiza eventos.
               </p>
-              <Link href={user ? "/muver/dashboard" : "/login"}>
-                <a className="text-green-700 font-semibold hover:underline">Explorar →</a>
+              <Link href={user ? "/muver/dashboard" : "/login"} className="text-green-700 font-semibold hover:underline">
+                Explorar →
               </Link>
             </div>
 
@@ -65,8 +59,8 @@ export default function Home() {
               <p className="text-gray-600 mb-4">
                 Aprende sobre los beneficios del CBD, salud y bienestar con nuestros artículos y recursos.
               </p>
-              <Link href="/articles">
-                <a className="text-green-700 font-semibold hover:underline">Explorar →</a>
+              <Link href="/articles" className="text-green-700 font-semibold hover:underline">
+                Explorar →
               </Link>
             </div>
 
@@ -75,8 +69,8 @@ export default function Home() {
               <p className="text-gray-600 mb-4">
                 Descubre y compra productos de CBD de alta calidad en nuestra tienda en línea.
               </p>
-              <Link href="/muver/shop">
-                <a className="text-green-700 font-semibold hover:underline">Explorar →</a>
+              <Link href="/muver/shop" className="text-green-700 font-semibold hover:underline">
+                Explorar →
               </Link>
             </div>
           </div>

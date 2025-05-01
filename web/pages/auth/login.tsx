@@ -1,34 +1,34 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useAuthContext } from '../../../shared/contexts/AuthContext';
+import { useAuthContext } from '../../src/contexts/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   const router = useRouter();
   const { login, loginWithGoogle, loginWithApple } = useAuthContext();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Reset error
     setError('');
-    
+
     // Validate email
     if (!email.match(/^\S+@\S+\.\S+$/)) {
       setError('Correo inválido');
       return;
     }
-    
+
     setLoading(true);
-    
+
     try {
       const { success, error } = await login(email, password);
-      
+
       if (success) {
         router.push('/muver/dashboard');
       } else {
@@ -44,10 +44,10 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     setError('');
     setLoading(true);
-    
+
     try {
       const { success, error } = await loginWithGoogle();
-      
+
       if (!success) {
         setError(error?.message || 'Error al iniciar sesión con Google');
       }
@@ -61,10 +61,10 @@ const Login = () => {
   const handleAppleLogin = async () => {
     setError('');
     setLoading(true);
-    
+
     try {
       const { success, error } = await loginWithApple();
-      
+
       if (!success) {
         setError(error?.message || 'Error al iniciar sesión con Apple');
       }
@@ -82,13 +82,13 @@ const Login = () => {
           <h1 className="text-2xl font-bold">Iniciar Sesión</h1>
           <p className="mt-2 text-gray-600">Ingresa a tu cuenta de MUVO</p>
         </div>
-        
+
         {error && (
           <div className="p-4 text-sm text-red-700 bg-red-100 rounded-lg">
             {error}
           </div>
         )}
-        
+
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -106,7 +106,7 @@ const Login = () => {
               placeholder="correo@ejemplo.com"
             />
           </div>
-          
+
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Contraseña
@@ -123,7 +123,7 @@ const Login = () => {
               placeholder="********"
             />
           </div>
-          
+
           <div className="flex items-center justify-between">
             <div className="text-sm">
               <Link href="/auth/forgot-password" className="font-medium text-indigo-600 hover:text-indigo-500">
@@ -131,7 +131,7 @@ const Login = () => {
               </Link>
             </div>
           </div>
-          
+
           <div>
             <button
               type="submit"
@@ -142,7 +142,7 @@ const Login = () => {
             </button>
           </div>
         </form>
-        
+
         <div className="mt-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
@@ -152,7 +152,7 @@ const Login = () => {
               <span className="px-2 text-gray-500 bg-white">O continúa con</span>
             </div>
           </div>
-          
+
           <div className="grid grid-cols-2 gap-3 mt-6">
             <button
               type="button"
@@ -162,7 +162,7 @@ const Login = () => {
             >
               <span>Google</span>
             </button>
-            
+
             <button
               type="button"
               onClick={handleAppleLogin}
@@ -173,7 +173,7 @@ const Login = () => {
             </button>
           </div>
         </div>
-        
+
         <div className="text-center mt-4">
           <p className="text-sm text-gray-600">
             ¿No tienes una cuenta?{' '}

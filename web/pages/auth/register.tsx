@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useAuthContext } from '../../../shared/contexts/AuthContext';
+import { useAuthContext } from '../../src/contexts/AuthContext';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -14,7 +14,7 @@ const Register = () => {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   const router = useRouter();
   const { register, loginWithGoogle, loginWithApple } = useAuthContext();
 
@@ -28,37 +28,37 @@ const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Reset states
     setError('');
     setMessage('');
-    
+
     // Validate email
     if (!email.match(/^\S+@\S+\.\S+$/)) {
       setError('Correo inválido');
       return;
     }
-    
+
     // Validate password
     if (password.length < 8) {
       setError('La contraseña debe tener al menos 8 caracteres');
       return;
     }
-    
+
     // Validate password confirmation
     if (password !== confirmPassword) {
       setError('Las contraseñas no coinciden');
       return;
     }
-    
+
     // Validate phone (optional)
     if (phone && !phone.match(/^\+52\d{10}$/)) {
       setError('Formato de teléfono inválido. Debe ser +52 seguido de 10 dígitos');
       return;
     }
-    
+
     setLoading(true);
-    
+
     try {
       const userData = {
         username,
@@ -66,9 +66,9 @@ const Register = () => {
         address: address || undefined,
         referrer: referrer || undefined
       };
-      
+
       const { success, error } = await register(email, password, userData);
-      
+
       if (success) {
         setMessage('Registro exitoso. Por favor verifica tu correo electrónico para confirmar tu cuenta.');
         // Clear form
@@ -91,10 +91,10 @@ const Register = () => {
   const handleGoogleRegister = async () => {
     setError('');
     setLoading(true);
-    
+
     try {
       const { success, error } = await loginWithGoogle();
-      
+
       if (!success) {
         setError(error?.message || 'Error al registrarse con Google');
       }
@@ -108,10 +108,10 @@ const Register = () => {
   const handleAppleRegister = async () => {
     setError('');
     setLoading(true);
-    
+
     try {
       const { success, error } = await loginWithApple();
-      
+
       if (!success) {
         setError(error?.message || 'Error al registrarse con Apple');
       }
@@ -129,19 +129,19 @@ const Register = () => {
           <h1 className="text-2xl font-bold">Crear Cuenta</h1>
           <p className="mt-2 text-gray-600">Regístrate para unirte a MUVO</p>
         </div>
-        
+
         {error && (
           <div className="p-4 text-sm text-red-700 bg-red-100 rounded-lg">
             {error}
           </div>
         )}
-        
+
         {message && (
           <div className="p-4 text-sm text-green-700 bg-green-100 rounded-lg">
             {message}
           </div>
         )}
-        
+
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="username" className="block text-sm font-medium text-gray-700">
@@ -158,7 +158,7 @@ const Register = () => {
               placeholder="Tu nombre"
             />
           </div>
-          
+
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Correo Electrónico
@@ -175,7 +175,7 @@ const Register = () => {
               placeholder="correo@ejemplo.com"
             />
           </div>
-          
+
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Contraseña
@@ -192,7 +192,7 @@ const Register = () => {
               placeholder="********"
             />
           </div>
-          
+
           <div>
             <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
               Confirmar Contraseña
@@ -209,7 +209,7 @@ const Register = () => {
               placeholder="********"
             />
           </div>
-          
+
           <div>
             <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
               Teléfono (opcional)
@@ -224,7 +224,7 @@ const Register = () => {
               placeholder="+5212345678"
             />
           </div>
-          
+
           <div>
             <label htmlFor="address" className="block text-sm font-medium text-gray-700">
               Dirección (opcional)
@@ -239,7 +239,7 @@ const Register = () => {
               rows={3}
             />
           </div>
-          
+
           {referrer && (
             <div>
               <label className="block text-sm font-medium text-gray-700">
@@ -250,7 +250,7 @@ const Register = () => {
               </div>
             </div>
           )}
-          
+
           <div>
             <button
               type="submit"
@@ -261,7 +261,7 @@ const Register = () => {
             </button>
           </div>
         </form>
-        
+
         <div className="mt-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
@@ -271,7 +271,7 @@ const Register = () => {
               <span className="px-2 text-gray-500 bg-white">O regístrate con</span>
             </div>
           </div>
-          
+
           <div className="grid grid-cols-2 gap-3 mt-6">
             <button
               type="button"
@@ -281,7 +281,7 @@ const Register = () => {
             >
               <span>Google</span>
             </button>
-            
+
             <button
               type="button"
               onClick={handleAppleRegister}
@@ -292,7 +292,7 @@ const Register = () => {
             </button>
           </div>
         </div>
-        
+
         <div className="text-center mt-4">
           <p className="text-sm text-gray-600">
             ¿Ya tienes una cuenta?{' '}
