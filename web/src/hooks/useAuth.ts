@@ -11,7 +11,7 @@ import {
   updatePassword,
   getUserProfile,
   getMuverDetails
-} from '../../../shared/supabase/client';
+} from '../lib/supabase/client';
 
 type AuthState = {
   user: User | null;
