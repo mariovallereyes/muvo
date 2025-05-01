@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { logout } from '../../redux/slices/authSlice';
+import { useAuthContext } from '../../../shared/contexts/AuthContext';
 
 interface HeaderProps {
   title?: string;
@@ -10,22 +8,21 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ title, onBack }) => {
-  const dispatch = useDispatch();
-  const { user } = useSelector((state: RootState) => state.auth);
+  const { user, logout } = useAuthContext();
 
-  const handleLogout = () => {
-    dispatch(logout());
+  const handleLogout = async () => {
+    await logout();
   };
 
   return (
-    <header className="bg-green-800 text-white shadow-md">
+    <header className="bg-indigo-600 text-white shadow-md">
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             {onBack && (
               <button
                 onClick={onBack}
-                className="mr-4 text-white hover:text-green-200 transition duration-300"
+                className="mr-4 text-white hover:text-indigo-200 transition duration-300"
                 aria-label="Volver"
               >
                 <svg
@@ -45,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({ title, onBack }) => {
               </button>
             )}
             <Link href="/">
-              <a className="text-2xl font-bold text-white hover:text-green-200 transition duration-300">
+              <a className="text-2xl font-bold text-white hover:text-indigo-200 transition duration-300">
                 {title || 'Muvo'}
               </a>
             </Link>
@@ -55,25 +52,25 @@ const Header: React.FC<HeaderProps> = ({ title, onBack }) => {
             <ul className="flex space-x-6">
               <li>
                 <Link href="/articles">
-                  <a className="text-white hover:text-green-200 transition duration-300">Aprender</a>
+                  <a className="text-white hover:text-indigo-200 transition duration-300">Aprender</a>
                 </Link>
               </li>
               <li>
                 <Link href="/muver/shop">
-                  <a className="text-white hover:text-green-200 transition duration-300">Tienda</a>
+                  <a className="text-white hover:text-indigo-200 transition duration-300">Tienda</a>
                 </Link>
               </li>
               {user ? (
                 <>
                   <li>
                     <Link href="/muver/dashboard">
-                      <a className="text-white hover:text-green-200 transition duration-300">Tablero</a>
+                      <a className="text-white hover:text-indigo-200 transition duration-300">Tablero</a>
                     </Link>
                   </li>
                   <li>
                     <button
                       onClick={handleLogout}
-                      className="text-white hover:text-green-200 transition duration-300"
+                      className="text-white hover:text-indigo-200 transition duration-300"
                     >
                       Cerrar Sesión
                     </button>
@@ -81,8 +78,8 @@ const Header: React.FC<HeaderProps> = ({ title, onBack }) => {
                 </>
               ) : (
                 <li>
-                  <Link href="/login">
-                    <a className="text-white hover:text-green-200 transition duration-300">Iniciar Sesión</a>
+                  <Link href="/auth/login">
+                    <a className="text-white hover:text-indigo-200 transition duration-300">Iniciar Sesión</a>
                   </Link>
                 </li>
               )}
