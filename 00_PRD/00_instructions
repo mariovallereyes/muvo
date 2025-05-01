@@ -1,0 +1,43 @@
+# Muvo App Cursor AI Rules and Guidelines
+
+## General Rules
+- Always read and understand all documentation files (prd.md, requirements.md, techstack.md, backend.md, frontend.md, flow.md, status.md) before starting implementation for the Muvo App project.
+- Follow the PRD step by step, ensuring all core objectives (MUVER module, editorial module, Shopify integration) are met in the specified phases.
+- Keep the project structure organized as defined in techstack.md, backend.md, and frontend.md (e.g., separate mobile/web roots, shared utilities, React Native/Next.js components).
+- Update status.md after completing each milestone during development sessions, logging progress, issues, and action items in the Progress Log section.
+- Ask for clarification when requirements are unclear, especially regarding legacy system integration, Supabase configurations, or Mexican regulatory compliance (LFPDPPP, WCAG).
+- Ensure all UI elements, error messages, and content are in Spanish only, aligning with the project's localization requirements for Mexican users.
+- Verify compliance with Mexican data privacy laws (LFPDPPP) and WCAG 2.1 Level AA accessibility standards before marking tasks as complete.
+
+## File Purposes
+- requirements.md: Source of truth for Muvo App project requirements, including Supabase integration (auth, database, storage), legacy system WebView, Shopify integration, and network marketing features (e.g., QR code recruiting, event management).
+- prd.md: Product specification and features for the Muvo App, detailing core objectives (MUVER module, editorial module, Shopify integration), UI/UX guidelines (MUVO CBD branding), and performance targets (<2s screen load).
+- techstack.md: Technical decisions and architecture for the Muvo App, outlining React Native (mobile), Next.js (web), Supabase (backend), Express.js (custom APIs), and tools like Sentry, Figma, and GitHub Actions.
+- backend.md: Backend implementation guide for the Muvo App, covering Supabase schema (users, muvers, events), REST API endpoints (/api/v1/auth/*, /api/v1/muver/*), business logic (QR code generation, network hierarchy), and legacy system migration.
+- frontend.md: Frontend implementation guide for the Muvo App, detailing React Native/Next.js components (LoginScreen, MuverDashboard, ArticleList), Redux Toolkit state management, UI/UX guidelines (branding, animations), and performance optimization (lazy loading, API caching).
+- flow.md: System and user flow documentation for the Muvo App, describing workflows (registration, event management, content viewing), data flows (Supabase, legacy system, Shopify), and error handling (e.g., "Correo inválido").
+- status.md: Progress tracking and milestones for the Muvo App, including implementation phases (MUVER module, editorial module, launch), detailed milestone checklist (e.g., Supabase setup, QR code functionality), and progress log for session updates.
+
+## Best Practices
+- Maintain consistent code style across React Native (mobile) and Next.js (web), using TypeScript for type safety and ESLint/Prettier for formatting.
+- Write clear comments and documentation for all components, hooks, and APIs, using JSDoc for React Native/Next.js and inline comments for Supabase SQL functions (e.g., // Fetches user metrics).
+- Follow the defined architecture in techstack.md: modular monolith with React Native (mobile), Next.js (web), Supabase (backend), and Express.js for custom APIs, ensuring scalability for 400–500 users with 10x growth potential.
+- Test thoroughly before marking tasks complete, covering functionality (e.g., event creation), usability (<3 clicks to core features), performance (<2s screen load, 60 FPS animations), security (JWT validation), compatibility (mid-range Android, iPhones from last 5 years, Chrome/Safari), and accessibility (WCAG 2.1 Level AA, VoiceOver/TalkBack).
+- Keep the status.md file updated after each development session (weekly/bi-weekly), marking milestone statuses (Not Started, In Progress, Completed, Delayed), updating actual dates, and logging progress in the Progress Log section.
+- Optimize performance by implementing lazy loading (e.g., ArticleList), image compression (react-native-fast-image, next/image), and API caching (Redux, TTL: 5 minutes), targeting <2s screen loads and <50ms re-renders.
+- Use AI-assisted tools effectively: leverage Cursor for generating React Native/Next.js components, hooks, APIs, SQL functions, and tests; use GitHub Copilot for real-time suggestions in VS Code; document AI usage in status.md notes.
+- Ensure all UI elements adhere to MUVO CBD branding (greens: #2E7D32, whites: #FFFFFF, Montserrat typography) and accessibility standards (4.5:1 contrast, aria-labels, Spanish error messages like "Credenciales incorrectas").
+- Verify compliance with LFPDPPP by obtaining user consent for user_profiles data (e.g., phone, address) and logging access in an audit table, as specified in backend.md.
+
+## Team Guidelines
+- Collaborate as a three-person team (Lead Developer/Designer, Backend Developer, Frontend Developer), ensuring clear communication during development sessions to address blockers and dependencies.
+- Lead Developer/Designer: Use Cursor to generate Figma mockups and React Native/Next.js components, oversee UI/UX (e.g., 16px padding, 8px border-radius), and update content in the editorial module.
+- Backend Developer: Use Cursor for Supabase schema, API routes (Express.js), and SQL functions (e.g., get_downline), ensuring performance (<500ms API responses) and security (JWT validation, rate limiting).
+- Frontend Developer: Use Cursor for React Native/Next.js components, hooks (e.g., useApi.ts), and tests (Jest, Detox, Cypress), ensuring accessibility (WCAG 2.1) and performance (60 FPS animations).
+- Update status.md during each session, logging completed milestones, issues (e.g., legacy system access delays), and action items (e.g., debug Apple Sign-In), ensuring all team members contribute to the Progress Log.
+
+## Session Update Process
+- Conduct weekly or bi-weekly development sessions to review progress, address blockers, and plan next steps.
+- During each session, update the Milestone Checklist in status.md: mark statuses (e.g., Completed), update notes (e.g., "Completed Supabase schema, blocker resolved"), and adjust due dates if needed.
+- Add a new entry to the Progress Log in status.md, summarizing the session: date, progress (e.g., "Implemented LoginScreen, passed Jest tests"), issues (e.g., "Google Sign-In failing on Android"), action items (e.g., "Frontend developer to debug Google Sign-In"), and notes (e.g., "Schedule accessibility review").
+- Ensure all team members review and agree on updates, maintaining a historical record of progress for the Muvo App project.
