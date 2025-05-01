@@ -16,11 +16,15 @@
     "@reduxjs/toolkit": "^2.0.1",
     "@supabase/supabase-js": "^2.39.0",
     "axios": "^1.6.2",
-    "expo": "^51.0.0",
+    "expo": "^53.0.4",
     "expo-status-bar": "~1.11.1",
     "i18next": "^23.7.11",
+    "metro": "^0.82.2",
+    "metro-react-native-babel-preset": "^0.77.0",
+    "metro-resolver": "^0.82.2",
     "react": "18.2.0",
-    "react-native": "0.73.2",
+    "react-i18next": "^13.5.0",
+    "react-native": "^0.73.2",
     "react-native-gesture-handler": "~2.14.0",
     "react-native-qrcode-svg": "^6.2.0",
     "react-native-reanimated": "~3.6.1",
@@ -28,8 +32,7 @@
     "react-native-screens": "~3.29.0",
     "react-native-svg": "14.1.0",
     "react-native-webview": "13.6.3",
-    "react-redux": "^9.0.4",
-    "react-i18next": "^13.5.0"
+    "react-redux": "^9.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
