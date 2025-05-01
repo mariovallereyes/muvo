@@ -34,21 +34,27 @@ muvo/                                # Project root
 │       │   └── shared/              # Shared components
 │       │       ├── ErrorBoundary.tsx # Error handling component
 │       │       └── LoadingIndicator.tsx # Loading spinner component
+│       ├── contexts/                # React Context providers
 │       ├── hooks/                   # Custom React hooks
 │       ├── locales/                 # i18n translations
 │       ├── navigation/              # React Navigation setup
 │       │   └── AppNavigator.tsx     # Navigation configuration
 │       ├── redux/                   # Redux state management
 │       │   ├── slices/              # Redux Toolkit slices
-│       │   │   └── authSlice.ts     # Authentication state slice
 │       │   └── store.ts             # Redux store configuration
 │       ├── services/                # API and service integrations
 │       └── tests/                   # Test files
 │           ├── components/          # Component tests
 │           └── hooks/               # Hook tests
 ├── shared/                          # Shared code between mobile and web
+│   ├── package.json                 # Shared dependencies
+│   ├── tsconfig.json                # TypeScript configuration for shared code
 │   ├── api/                         # API client
-│   │   └── apiClient.ts             # Axios API client configuration
+│   │   └── apiClient.ts             # API client configuration
+│   ├── contexts/                    # Shared React Context providers
+│   │   └── AuthContext.tsx          # Authentication context
+│   ├── hooks/                       # Shared custom React hooks
+│   │   └── useAuth.ts               # Authentication hook
 │   ├── models/                      # Shared data models
 │   │   └── types.ts                 # TypeScript type definitions
 │   ├── supabase/                    # Supabase integration
@@ -60,7 +66,8 @@ muvo/                                # Project root
 │       ├── 20250501160000_initial_schema.sql      # Initial database schema
 │       ├── 20250501160100_row_level_security.sql  # RLS policies
 │       ├── 20250501160200_indexes.sql             # Performance indexes
-│       └── 20250501160300_storage_buckets.sql     # Storage configuration
+│       ├── 20250501160300_storage_buckets.sql     # Storage configuration
+│       └── 20250501160400_auth_hooks.sql          # Authentication hooks
 ├── web/                             # Next.js web app
 │   ├── components/                  # React components for web
 │   │   ├── auth/                    # Authentication components
@@ -68,27 +75,46 @@ muvo/                                # Project root
 │   │   ├── muver/                   # MUVER module components
 │   │   └── shared/                  # Shared components
 │   │       ├── Footer.tsx           # Footer component
-│   │       └── Header.tsx           # Header component
+│   │       └── Header.tsx           # Header component with navigation
 │   ├── hooks/                       # Custom React hooks
 │   ├── locales/                     # i18n translations
+│   ├── next.config.js               # Next.js configuration
 │   ├── package.json                 # Web app dependencies and scripts
 │   ├── pages/                       # Next.js pages
 │   │   ├── _app.tsx                 # Next.js App component
 │   │   ├── index.tsx                # Homepage
 │   │   ├── articles/                # Editorial content pages
+│   │   ├── auth/                    # Authentication pages
+│   │   │   ├── callback.tsx         # OAuth callback handler
+│   │   │   ├── forgot-password.tsx  # Password recovery page
+│   │   │   ├── login.tsx            # Login page
+│   │   │   ├── register.tsx         # Registration page
+│   │   │   └── reset-password.tsx   # Password reset page
 │   │   └── muver/                   # MUVER module pages
 │   ├── public/                      # Static assets for web
 │   │   ├── fonts/                   # Custom fonts
 │   │   └── images/                  # Images and icons
 │   ├── redux/                       # Redux state management
 │   │   ├── slices/                  # Redux Toolkit slices
+│   │   │   ├── authSlice.ts         # Authentication state slice
+│   │   │   ├── contentSlice.ts      # Content state slice
+│   │   │   └── muverSlice.ts        # MUVER state slice
 │   │   └── store.ts                 # Redux store configuration
 │   ├── services/                    # API and service integrations
+│   ├── src/                         # Source code for web-specific implementations
+│   │   ├── contexts/                # React Context providers
+│   │   │   └── AuthContext.tsx      # Authentication context
+│   │   ├── hooks/                   # Custom React hooks
+│   │   │   └── useAuth.ts           # Authentication hook
+│   │   └── lib/                     # Library code
+│   │       └── supabase/            # Supabase integration
+│   │           └── client.ts        # Supabase client configuration
 │   ├── styles/                      # CSS styles
 │   │   └── globals.css              # Global styles with Tailwind
 │   ├── .env.local                   # Environment variables for web app
 │   ├── postcss.config.js            # PostCSS configuration
 │   ├── tailwind.config.js           # Tailwind CSS configuration
+│   ├── tsconfig.json                # TypeScript configuration for web
 │   └── tests/                       # Test files
 │       ├── components/              # Component tests
 │       └── hooks/                   # Hook tests
@@ -112,9 +138,13 @@ The project uses:
 - **Tailwind CSS** for web styling
 
 Key additions since the last update:
-- GitHub workflow configuration in `.github/workflows/main.yml`
-- Supabase migrations in `supabase/migrations/` for database schema, security policies, and storage
-- Environment files for Supabase configuration
-- This structure documentation file
+- Implemented authentication system with Supabase Auth
+- Created shared code structure between web and mobile apps
+- Added Redux state management with auth, muver, and content slices
+- Implemented web app authentication pages and components
+- Set up Supabase migrations for database schema, security policies, storage, and auth hooks
+- Created local versions of AuthContext and useAuth hook for web app
+- Added QR code generation utility
+- Configured Next.js for TypeScript path aliases
 
 This structure is optimized for a three-person development team using AI-assisted tools like Cursor, targeting an initial user base of 400-500 users with 10x growth potential.
