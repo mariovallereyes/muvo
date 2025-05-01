@@ -3,10 +3,9 @@ export default {
   slug: "muvo",
   version: "1.0.0",
   orientation: "portrait",
-  icon: "./assets/icon.png",
+  // Remove references to specific asset files
   userInterfaceStyle: "light",
   splash: {
-    image: "./assets/splash.png",
     resizeMode: "contain",
     backgroundColor: "#ffffff"
   },
@@ -18,12 +17,8 @@ export default {
   },
   android: {
     adaptiveIcon: {
-      foregroundImage: "./assets/adaptive-icon.png",
       backgroundColor: "#ffffff"
     }
-  },
-  web: {
-    favicon: "./assets/favicon.png"
   },
   extra: {
     supabaseUrl: "https://badxprshgmjfzvcerbyu.supabase.co",

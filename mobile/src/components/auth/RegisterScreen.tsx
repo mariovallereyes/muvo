@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { signUpWithEmail } from '../../../shared/supabase/client';
+import { signUpWithEmail } from '../../utils/supabaseClient';
 
 type AuthStackParamList = {
   Login: undefined;
@@ -34,7 +34,7 @@ const RegisterScreen: React.FC = () => {
   const [address, setAddress] = useState('');
   const [referrer, setReferrer] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
-  
+
   const navigation = useNavigation<RegisterScreenNavigationProp>();
   const route = useRoute<RegisterScreenRouteProp>();
 
@@ -91,7 +91,7 @@ const RegisterScreen: React.FC = () => {
       };
 
       const { data, error } = await signUpWithEmail(email, password, userData);
-      
+
       if (error) {
         Alert.alert('Error', error.message || 'Error durante el registro');
       } else {
