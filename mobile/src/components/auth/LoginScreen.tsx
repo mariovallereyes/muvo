@@ -13,11 +13,11 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { 
-  signInWithEmail, 
-  signInWithGoogle, 
-  signInWithApple 
-} from '../../../shared/supabase/client';
+import {
+  signInWithEmail,
+  signInWithGoogle,
+  signInWithApple
+} from '../../utils/supabaseClient';
 
 type AuthStackParamList = {
   Login: undefined;
@@ -32,7 +32,7 @@ const LoginScreen: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   const navigation = useNavigation<LoginScreenNavigationProp>();
 
   const validateEmail = (email: string): boolean => {
@@ -55,7 +55,7 @@ const LoginScreen: React.FC = () => {
 
     try {
       const { error } = await signInWithEmail(email, password);
-      
+
       if (error) {
         Alert.alert('Error', error.message || 'Credenciales incorrectas');
       } else {
@@ -70,10 +70,10 @@ const LoginScreen: React.FC = () => {
 
   const handleGoogleLogin = async () => {
     setLoading(true);
-    
+
     try {
       const { error } = await signInWithGoogle();
-      
+
       if (error) {
         Alert.alert('Error', error.message || 'Error al iniciar sesión con Google');
       }
@@ -87,10 +87,10 @@ const LoginScreen: React.FC = () => {
 
   const handleAppleLogin = async () => {
     setLoading(true);
-    
+
     try {
       const { error } = await signInWithApple();
-      
+
       if (error) {
         Alert.alert('Error', error.message || 'Error al iniciar sesión con Apple');
       }

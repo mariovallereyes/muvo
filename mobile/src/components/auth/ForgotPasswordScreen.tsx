@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { resetPassword } from '../../../shared/supabase/client';
+import { resetPassword } from '../../utils/supabaseClient';
 
 type AuthStackParamList = {
   Login: undefined;
@@ -26,7 +26,7 @@ type ForgotPasswordScreenNavigationProp = StackNavigationProp<AuthStackParamList
 const ForgotPasswordScreen: React.FC = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   const navigation = useNavigation<ForgotPasswordScreenNavigationProp>();
 
   const validateEmail = (email: string): boolean => {
@@ -44,7 +44,7 @@ const ForgotPasswordScreen: React.FC = () => {
 
     try {
       const { error } = await resetPassword(email);
-      
+
       if (error) {
         Alert.alert('Error', error.message || 'Error al enviar el correo de recuperación');
       } else {
