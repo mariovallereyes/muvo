@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { useAuthContext } from '@shared/contexts/AuthContext';
+import { useAuthContext } from '../../src/contexts/AuthContext';
 
 interface HeaderProps {
   title?: string;
