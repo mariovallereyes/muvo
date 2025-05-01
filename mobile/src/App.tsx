@@ -7,6 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import AppNavigator from './navigation/AppNavigator';
 import { store } from './redux/store';
 import ErrorBoundary from './components/shared/ErrorBoundary';
+import { AuthProvider } from './contexts/AuthContext';
 
 export default function App() {
   return (
@@ -14,8 +15,10 @@ export default function App() {
       <SafeAreaProvider>
         <NavigationContainer>
           <ErrorBoundary>
-            <StatusBar style="auto" />
-            <AppNavigator />
+            <AuthProvider>
+              <StatusBar style="auto" />
+              <AppNavigator />
+            </AuthProvider>
           </ErrorBoundary>
         </NavigationContainer>
       </SafeAreaProvider>

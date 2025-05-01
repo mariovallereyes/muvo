@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../redux/store';
-import { checkAuth } from '../redux/slices/authSlice';
+import { ActivityIndicator, View } from 'react-native';
 
 // Import screens
 import LoginScreen from '../components/auth/LoginScreen';
-import RegistrationScreen from '../components/auth/RegistrationScreen';
-import OnboardingScreen from '../components/auth/OnboardingScreen';
+import RegisterScreen from '../components/auth/RegisterScreen';
+import ForgotPasswordScreen from '../components/auth/ForgotPasswordScreen';
 import MuverDashboard from '../components/muver/MuverDashboard';
 import ProductPurchase from '../components/muver/ProductPurchase';
 import Recruiting from '../components/muver/Recruiting';
@@ -17,11 +15,14 @@ import ArticleList from '../components/editorial/ArticleList';
 import ArticleDetail from '../components/editorial/ArticleDetail';
 import LoadingIndicator from '../components/shared/LoadingIndicator';
 
+// Auth Context
+import { useAuth } from '../contexts/AuthContext';
+
 // Define navigation params
 export type RootStackParamList = {
   Login: undefined;
-  Registration: undefined;
-  Onboarding: undefined;
+  Register: { referrer?: string };
+  ForgotPassword: undefined;
   MuverDashboard: undefined;
   ProductPurchase: { isMuver: boolean };
   Recruiting: undefined;
@@ -34,23 +35,21 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 const AppNavigator = () => {
-  const dispatch = useDispatch();
-  const { user, loading } = useSelector((state: RootState) => state.auth);
-
-  useEffect(() => {
-    // Check if user is already authenticated
-    dispatch(checkAuth());
-  }, [dispatch]);
+  const { isAuthenticated, loading, isMuver } = useAuth();
 
   if (loading) {
-    return <LoadingIndicator visible={true} />;
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#4f46e5" />
+      </View>
+    );
   }
 
   return (
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#2E7D32', // Primary green color
+          backgroundColor: '#4f46e5', // Primary indigo color
         },
         headerTintColor: '#FFFFFF',
         headerTitleStyle: {
@@ -58,7 +57,7 @@ const AppNavigator = () => {
         },
       }}
     >
-      {user ? (
+      {isAuthenticated ? (
         // Authenticated user routes
         <>
           <Stack.Screen
@@ -103,17 +102,17 @@ const AppNavigator = () => {
           <Stack.Screen
             name="Login"
             component={LoginScreen}
-            options={{ title: 'Iniciar Sesión' }}
+            options={{ title: 'Iniciar Sesión', headerShown: false }}
           />
           <Stack.Screen
-            name="Registration"
-            component={RegistrationScreen}
-            options={{ title: 'Registrarse' }}
+            name="Register"
+            component={RegisterScreen}
+            options={{ title: 'Registrarse', headerShown: false }}
           />
           <Stack.Screen
-            name="Onboarding"
-            component={OnboardingScreen}
-            options={{ title: 'Completar Perfil' }}
+            name="ForgotPassword"
+            component={ForgotPasswordScreen}
+            options={{ title: 'Recuperar Contraseña', headerShown: false }}
           />
           <Stack.Screen
             name="ArticleList"
