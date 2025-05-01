@@ -1,73 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-import { supabase } from './utils/supabaseClient';
+
+// Import screens
+import HomeScreen from './screens/HomeScreen';
+import ArticleListScreen from './screens/ArticleListScreen';
+import ArticleDetailScreen from './screens/ArticleDetailScreen';
+
+// Define the root stack parameter list
+export type RootStackParamList = {
+  Home: undefined;
+  ArticleList: undefined;
+  ArticleDetail: { articleId: string };
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
-  const [initialized, setInitialized] = useState(false);
-
-  useEffect(() => {
-    // Simple test to check if Supabase connection works
-    const checkConnection = async () => {
-      try {
-        setLoading(true);
-        const { data, error } = await supabase.from('user_profiles').select('count').limit(1);
-
-        if (error) {
-          console.error('Supabase connection error:', error);
-        } else {
-          console.log('Supabase connection successful');
-          setInitialized(true);
-        }
-      } catch (error) {
-        console.error('Error checking Supabase connection:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    checkConnection();
-  }, []);
-
   return (
     <SafeAreaProvider>
-      <View style={styles.container}>
+      <NavigationContainer>
         <StatusBar style="auto" />
-        {loading ? (
-          <ActivityIndicator size="large" color="#4f46e5" />
-        ) : (
-          <>
-            <Text style={styles.title}>MUVO App</Text>
-            <Text style={styles.subtitle}>
-              {initialized
-                ? 'Connected to Supabase successfully!'
-                : 'Failed to connect to Supabase'}
-            </Text>
-          </>
-        )}
-      </View>
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: '#4f46e5',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        >
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ title: 'MUVO CBD' }}
+          />
+          <Stack.Screen
+            name="ArticleList"
+            component={ArticleListScreen}
+            options={{ title: 'Artículos' }}
+          />
+          <Stack.Screen
+            name="ArticleDetail"
+            component={ArticleDetailScreen}
+            options={{ title: 'Detalle' }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
-  },
-});

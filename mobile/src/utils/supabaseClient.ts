@@ -1,9 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
-import Constants from 'expo-constants';
 
-// Get Supabase URL and anon key from environment variables
-const supabaseUrl = Constants.expoConfig?.extra?.supabaseUrl || 'https://badxprshgmjfzvcerbyu.supabase.co';
-const supabaseAnonKey = Constants.expoConfig?.extra?.supabaseAnonKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJhZHhwcnNoZ21qZnp2Y2VyYnl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU1MzA5MzQsImV4cCI6MjAzMTEwNjkzNH0.Nh8JZwBDqYlsQnXQao_ySgA-QP9eYCGCJZkFvLbLBXY';
+// Hardcode the Supabase URL and anon key for now
+const supabaseUrl = 'https://badxprshgmjfzvcerbyu.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJhZHhwcnNoZ21qZnp2Y2VyYnl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYxMTQ1MzMsImV4cCI6MjA2MTY5MDUzM30.2HIZ3QFweYqNF538-1MijMTYOZyHlu-xOQcTRyoKSEk';
 
 // Initialize Supabase client
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -20,12 +19,12 @@ export const getUserProfile = async (userId: string) => {
     .select('*')
     .eq('user_id', userId)
     .single();
-    
+
   if (error) {
     console.error('Error fetching user profile:', error);
     return null;
   }
-  
+
   return data;
 };
 
@@ -35,12 +34,12 @@ export const getMuverDetails = async (userId: string) => {
     .select('*')
     .eq('id', userId)
     .single();
-    
+
   if (error) {
     console.error('Error fetching muver details:', error);
     return null;
   }
-  
+
   return data;
 };
 
