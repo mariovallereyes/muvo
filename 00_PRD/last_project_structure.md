@@ -20,16 +20,23 @@ muvo/                                # Project root
 │   └── setup-guide.md               # Setup guide for developers
 ├── mobile/                          # React Native mobile app
 │   ├── index.js                     # Entry point for the mobile app
+│   ├── app.json                     # Expo configuration
+│   ├── babel.config.js              # Babel configuration
+│   ├── metro.config.js              # Metro bundler configuration
 │   ├── package.json                 # Mobile app dependencies and scripts
+│   ├── tsconfig.json                # TypeScript configuration
 │   ├── .env                         # Environment variables for mobile app
 │   └── src/                         # Source code for mobile app
-│       ├── App.tsx                  # Main App component
+│       ├── App.tsx                  # Main App component with navigation
+│       ├── App.simple.tsx           # Simplified App component for testing
 │       ├── assets/                  # Static assets for mobile
 │       │   ├── fonts/               # Custom fonts
 │       │   └── images/              # Images and icons
 │       ├── components/              # React Native components
 │       │   ├── auth/                # Authentication components
 │       │   ├── editorial/           # Editorial module components
+│       │   │   ├── ArticleList.tsx  # Article list component
+│       │   │   └── ArticleDetail.tsx # Article detail component
 │       │   ├── muver/               # MUVER module components
 │       │   └── shared/              # Shared components
 │       │       ├── ErrorBoundary.tsx # Error handling component
@@ -42,7 +49,13 @@ muvo/                                # Project root
 │       ├── redux/                   # Redux state management
 │       │   ├── slices/              # Redux Toolkit slices
 │       │   └── store.ts             # Redux store configuration
+│       ├── screens/                 # Screen components
+│       │   ├── HomeScreen.tsx       # Home screen component
+│       │   ├── ArticleListScreen.tsx # Article list screen component
+│       │   └── ArticleDetailScreen.tsx # Article detail screen component
 │       ├── services/                # API and service integrations
+│       ├── utils/                   # Utility functions
+│       │   └── supabaseClient.ts    # Supabase client configuration
 │       └── tests/                   # Test files
 │           ├── components/          # Component tests
 │           └── hooks/               # Hook tests
@@ -146,5 +159,10 @@ Key additions since the last update:
 - Created local versions of AuthContext and useAuth hook for web app
 - Added QR code generation utility
 - Configured Next.js for TypeScript path aliases
+- Added web support to the mobile app with react-dom and react-native-web
+- Created screen components for mobile app (HomeScreen, ArticleListScreen, ArticleDetailScreen)
+- Implemented navigation structure with React Navigation
+- Fixed Supabase connection in mobile app with correct API key
+- Updated configuration files (babel.config.js, metro.config.js, tsconfig.json) for better project structure
 
 This structure is optimized for a three-person development team using AI-assisted tools like Cursor, targeting an initial user base of 400-500 users with 10x growth potential.
