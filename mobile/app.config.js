@@ -3,12 +3,7 @@ export default {
   slug: "muvo",
   version: "1.0.0",
   orientation: "portrait",
-  // Remove references to specific asset files
   userInterfaceStyle: "light",
-  splash: {
-    resizeMode: "contain",
-    backgroundColor: "#ffffff"
-  },
   assetBundlePatterns: [
     "**/*"
   ],
