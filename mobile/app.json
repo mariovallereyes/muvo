@@ -9,16 +9,19 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.muvo.app"
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.muvo.app"
     },
     "extra": {
       "supabaseUrl": "https://badxprshgmjfzvcerbyu.supabase.co",
       "supabaseAnonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJhZHhwcnNoZ21qZnp2Y2VyYnl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYxMTQ1MzMsImV4cCI6MjA2MTY5MDUzM30.2HIZ3QFweYqNF538-1MijMTYOZyHlu-xOQcTRyoKSEk"
-    }
+    },
+    "sdkVersion": "53.0.0"
   }
 }
